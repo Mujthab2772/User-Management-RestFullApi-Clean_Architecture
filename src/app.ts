@@ -1,11 +1,11 @@
 import 'dotenv/config'
 import express from 'express'
 import swaggerUi from "swagger-ui-express";
-import { swaggerSpec } from "./infrastructure/config/swagger.js";
-import authRoute from './presentation/routes/auth.routes.js'
-import userRoute from './presentation/routes/user.routes.js'
-import { authMiddleware } from './presentation/middlewares/auth.middleware.js'
-import { errorMiddleware } from './presentation/middlewares/errorMiddleware.js'
+import { swaggerSpec } from "./infrastructure/config/swagger";
+import authRoute from './presentation/routes/auth.routes'
+import userRoute from './presentation/routes/user.routes'
+import { authMiddleware } from './presentation/middlewares/auth.middleware'
+import { errorMiddleware } from './presentation/middlewares/errorMiddleware'
 
 
 const app = express()

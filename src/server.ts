@@ -1,5 +1,5 @@
-import app from './app.js'
-import { connectMongo } from './infrastructure/database/mongo.js'
+import app from './app'
+import { connectMongo } from './infrastructure/database/mongo'
 
 const PORT =  process.env.PORT || 5000
 

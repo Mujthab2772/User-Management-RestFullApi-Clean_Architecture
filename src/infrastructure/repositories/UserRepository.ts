@@ -1,7 +1,7 @@
 import { User } from "@prisma/client";
-import { CreateUserDTO } from "../../domain/dto/CreateUserDTO.js";
-import { IUserRepository } from "../../domain/interfaceRepositories/IUserRepository.js";
-import { prisma } from "../database/prisma.js";
+import { CreateUserDTO } from "../../domain/dto/CreateUserDTO";
+import { IUserRepository } from "../../domain/interfaceRepositories/IUserRepository";
+import { prisma } from "../database/prisma";
 
 export class UserRepository implements IUserRepository {
     async create(data: CreateUserDTO): Promise<User> {

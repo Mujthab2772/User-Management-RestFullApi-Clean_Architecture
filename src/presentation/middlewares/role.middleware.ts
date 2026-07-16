@@ -1,5 +1,5 @@
 import { NextFunction, Response } from "express";
-import { AuthRequest } from "./auth.middleware.js";
+import { AuthRequest } from "./auth.middleware";
 
 export const authorize =
   (roles: string[]) =>

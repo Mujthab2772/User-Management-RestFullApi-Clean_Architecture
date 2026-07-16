@@ -1,8 +1,8 @@
 import { NextFunction, Request, Response } from "express";
-import { UserService } from "../../application/services/UserService.js";
+import { IUserUseCase } from "../../domain/interfaceUseCase/IUserUseCase";
 
 export class UserController {
-    constructor(private userService: UserService) {}
+    constructor(private userService: IUserUseCase) {}
 
     findUserById = async (req: Request, res: Response, next: NextFunction) => {
         try {

@@ -1,9 +1,9 @@
 import express from 'express'
-import { UserService } from '../../application/services/UserService.js'
-import { UserRepository } from '../../infrastructure/repositories/UserRepository.js'
-import { AuditLogRepository } from '../../infrastructure/repositories/AuditLogRepostory.js'
-import { UserController } from '../controllers/UserController.js'
-import { authorize } from '../middlewares/role.middleware.js'
+import { UserService } from '../../application/useCase/userCase'
+import { UserRepository } from '../../infrastructure/repositories/UserRepository'
+import { AuditLogRepository } from '../../infrastructure/repositories/AuditLogRepostory'
+import { UserController } from '../controllers/UserController'
+import { authorize } from '../middlewares/role.middleware'
 
 const router = express.Router()
 

@@ -1,17 +1,18 @@
-import { CreateUserDTO } from "../../domain/dto/CreateUserDTO.js";
-import { LoginDTO } from "../../domain/dto/LoginDTO.js";
-import { IAuditRepository } from "../../domain/interfaceRepositories/IAuditRepository.js";
-import { IUserRepository } from "../../domain/interfaceRepositories/IUserRepository.js";
-import { confirmPassword, hashedPassword } from "../../shared/utils/hashingPassword.js";
-import { generateToken } from "../../shared/utils/Jwt.js";
+import { CreateUserDTO } from "../../domain/dto/CreateUserDTO";
+import { LoginDTO } from "../../domain/dto/LoginDTO";
+import { IAuditRepository } from "../../domain/interfaceRepositories/IAuditRepository";
+import { IUserRepository } from "../../domain/interfaceRepositories/IUserRepository";
+import { IAuthUseCase, AuthResponseDTO } from "../../domain/interfaceUseCase/IAuthUseCase";
+import { confirmPassword, hashedPassword } from "../../shared/utils/hashingPassword";
+import { generateToken } from "../../shared/utils/Jwt";
 
-export class AuthService {
+export class AuthService implements IAuthUseCase {
     constructor(
         private userRepository: IUserRepository,
         private auditRepository: IAuditRepository
     ) {}
 
-    async register(data: CreateUserDTO) {
+    async register(data: CreateUserDTO): Promise<AuthResponseDTO> {
         const emailExists = await this.userRepository.findByEmail(data.email);
 
         if (emailExists) {
@@ -34,6 +35,7 @@ export class AuthService {
         const token = generateToken(user.id, user.role)
 
         const {password, ...userDetails} = user
+        console.log(userDetails)
 
         return {
             userDetails,
@@ -41,7 +43,7 @@ export class AuthService {
         }
     }
 
-    async login(data: LoginDTO) {
+    async login(data: LoginDTO): Promise<AuthResponseDTO> {
         const user = await this.userRepository.findByEmail(data.email)
 
         if(!user) {

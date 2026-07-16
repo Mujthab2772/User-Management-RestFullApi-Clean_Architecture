@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { verifyToken } from "../../shared/utils/Jwt.js";
+import { verifyToken } from "../../shared/utils/Jwt";
 
 export interface jwtPayload {
     userId: string,

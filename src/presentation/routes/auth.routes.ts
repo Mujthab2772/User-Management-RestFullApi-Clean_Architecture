@@ -1,8 +1,8 @@
 import express from 'express'
-import { AuthService } from '../../application/services/AuthService.js'
-import { UserRepository } from '../../infrastructure/repositories/UserRepository.js'
-import { AuditLogRepository } from '../../infrastructure/repositories/AuditLogRepostory.js'
-import { AuthController } from '../controllers/AuthController.js'
+import { AuthService } from '../../application/useCase/authCase'
+import { UserRepository } from '../../infrastructure/repositories/UserRepository'
+import { AuditLogRepository } from '../../infrastructure/repositories/AuditLogRepostory'
+import { AuthController } from '../controllers/AuthController'
 
 const router = express.Router()
 

@@ -1,8 +1,8 @@
 import { NextFunction, Request, Response } from "express";
-import { AuthService } from "../../application/services/AuthService.js";
+import { IAuthUseCase } from "../../domain/interfaceUseCase/IAuthUseCase";
 
 export class AuthController {
-    constructor(private authService: AuthService){}
+    constructor(private authService: IAuthUseCase){}
 
     register = async (req: Request, res: Response, next: NextFunction) => {
         try {

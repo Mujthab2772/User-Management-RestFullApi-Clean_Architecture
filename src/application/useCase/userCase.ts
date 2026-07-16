@@ -1,15 +1,17 @@
-import { CreateUserDTO } from "../../domain/dto/CreateUserDTO.js";
-import { IAuditRepository } from "../../domain/interfaceRepositories/IAuditRepository.js";
-import { IUserRepository } from "../../domain/interfaceRepositories/IUserRepository.js";
-import { hashedPassword } from "../../shared/utils/hashingPassword.js";
+import { CreateUserDTO } from "../../domain/dto/CreateUserDTO";
+import { ResponseDTO } from "../../domain/dto/ResponseDTO";
+import { IAuditRepository } from "../../domain/interfaceRepositories/IAuditRepository";
+import { IUserRepository } from "../../domain/interfaceRepositories/IUserRepository";
+import { IUserUseCase } from "../../domain/interfaceUseCase/IUserUseCase";
+import { hashedPassword } from "../../shared/utils/hashingPassword";
 
-export class UserService {
+export class UserService implements IUserUseCase {
     constructor(
         private userRepository: IUserRepository,
         private auditRepository: IAuditRepository
     ){}
 
-    async findUserById(id: string) {
+    async findUserById(id: string): Promise<ResponseDTO> {
         const user = await this.userRepository.findById(id)
 
         if(!user) {
@@ -21,14 +23,15 @@ export class UserService {
         return userDetails;
     }
 
-    async getUsers() {
+    async getUsers(): Promise<ResponseDTO[]> {
         const users =
         await this.userRepository.findAllUsers();
 
-        return users.map(({ password, ...user }) => user);
+        const userDetails = users.map(({ password, ...user }) => user);
+        return userDetails
     }
 
-    async updateUser(id: string, data: Partial<CreateUserDTO>) {
+    async updateUser(id: string, data: Partial<CreateUserDTO>): Promise<ResponseDTO> {
         const existingUser = await this.userRepository.findById(id)
 
         if(!existingUser){
@@ -57,12 +60,12 @@ export class UserService {
 
         const { password, ...userDetails } = user;
 
-        return userDetails;
+        return userDetails
 
 
     }
 
-    async deleteUser(id: string) {
+    async deleteUser(id: string): Promise<any> {
 
         const existingUser = await this.userRepository.findById(id)
 
