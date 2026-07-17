@@ -35,7 +35,6 @@ export class AuthService implements IAuthUseCase {
         const token = generateToken(user.id, user.role)
 
         const {password, ...userDetails} = user
-        console.log(userDetails)
 
         return {
             userDetails,
@@ -71,8 +70,3 @@ export class AuthService implements IAuthUseCase {
         }
     }
 }
-
-// ├── USER_REGISTERED
-// ├── USER_UPDATED
-// ├── USER_DELETED
-// └── USER_LOGIN

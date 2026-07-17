@@ -2,7 +2,7 @@ import { CreateUserDTO } from "../../domain/dto/CreateUserDTO";
 import { ResponseDTO } from "../../domain/dto/ResponseDTO";
 import { IAuditRepository } from "../../domain/interfaceRepositories/IAuditRepository";
 import { IUserRepository } from "../../domain/interfaceRepositories/IUserRepository";
-import { IUserUseCase } from "../../domain/interfaceUseCase/IUserUseCase";
+import { DeleteResponseDTO, IUserUseCase } from "../../domain/interfaceUseCase/IUserUseCase";
 import { hashedPassword } from "../../shared/utils/hashingPassword";
 
 export class UserService implements IUserUseCase {
@@ -65,7 +65,7 @@ export class UserService implements IUserUseCase {
 
     }
 
-    async deleteUser(id: string): Promise<any> {
+    async deleteUser(id: string): Promise<DeleteResponseDTO> {
 
         const existingUser = await this.userRepository.findById(id)
 
