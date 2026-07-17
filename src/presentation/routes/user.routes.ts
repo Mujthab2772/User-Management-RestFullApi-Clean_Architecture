@@ -1,15 +1,18 @@
-import express from 'express'
-import { UserService } from '../../application/useCase/userCase'
-import { UserRepository } from '../../infrastructure/repositories/UserRepository'
-import { AuditLogRepository } from '../../infrastructure/repositories/AuditLogRepostory'
-import { UserController } from '../controllers/UserController'
-import { authorize } from '../middlewares/role.middleware'
+import express from "express";
+import { UserService } from "../../application/useCase/userCase";
+import { UserRepository } from "../../infrastructure/repositories/UserRepository";
+import { AuditLogRepository } from "../../infrastructure/repositories/AuditLogRepostory";
+import { UserController } from "../controllers/UserController";
+import { authorize } from "../middlewares/role.middleware";
 
-const router = express.Router()
+const router = express.Router();
 
-const userService = new UserService(new UserRepository(), new AuditLogRepository())
+const userService = new UserService(
+  new UserRepository(),
+  new AuditLogRepository(),
+);
 
-const userController = new UserController(userService)
+const userController = new UserController(userService);
 
 /**
  * @swagger
@@ -24,10 +27,7 @@ const userController = new UserController(userService)
  *       200:
  *         description: Users fetched successfully
  */
-router.get(
-  "/",
-  userController.getUsers
-);
+router.get("/", userController.getUsers);
 
 /**
  * @swagger
@@ -48,10 +48,7 @@ router.get(
  *       200:
  *         description: User fetched successfully
  */
-router.get(
-  "/:id",
-  userController.findUserById
-);
+router.get("/:id", userController.findUserById);
 
 /**
  * @swagger
@@ -87,10 +84,7 @@ router.get(
  *       200:
  *         description: User updated successfully
  */
-router.patch(
-  "/:id",
-  userController.updateUser
-);
+router.patch("/:id", userController.updateUser);
 
 /**
  * @swagger
@@ -111,10 +105,6 @@ router.patch(
  *       200:
  *         description: User deleted successfully
  */
-router.delete(
-  "/:id",
-  userController.deleteUser
-);
+router.delete("/:id", userController.deleteUser);
 
-
-export default router
+export default router;

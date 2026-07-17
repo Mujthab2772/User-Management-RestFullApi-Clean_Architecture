@@ -2,17 +2,20 @@ import { Request, Response, NextFunction } from "express";
 import { verifyToken } from "../../shared/utils/Jwt";
 
 export interface jwtPayload {
-    userId: string,
-    role: string
+  userId: string;
+  role: string;
 }
 export interface AuthRequest extends Request {
   user?: jwtPayload;
 }
 
-export const authMiddleware = (req: AuthRequest,res: Response,next: NextFunction) => {
+export const authMiddleware = (
+  req: AuthRequest,
+  res: Response,
+  next: NextFunction,
+) => {
   try {
-    const authHeader =
-      req.headers.authorization;
+    const authHeader = req.headers.authorization;
 
     if (!authHeader) {
       return res.status(401).json({
@@ -21,8 +24,7 @@ export const authMiddleware = (req: AuthRequest,res: Response,next: NextFunction
       });
     }
 
-    const token =
-      authHeader.split(" ")[1];
+    const token = authHeader.split(" ")[1];
 
     if (!token) {
       return res.status(401).json({
@@ -33,10 +35,10 @@ export const authMiddleware = (req: AuthRequest,res: Response,next: NextFunction
 
     const decoded = verifyToken(token);
 
-    req.user = decoded as jwtPayload
+    req.user = decoded as jwtPayload;
 
     next();
-  } catch (error) {
+  } catch {
     return res.status(401).json({
       success: false,
       message: "Unauthorized",

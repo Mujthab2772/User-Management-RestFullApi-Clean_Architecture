@@ -1,13 +1,16 @@
-import express from 'express'
-import { AuthService } from '../../application/useCase/authCase'
-import { UserRepository } from '../../infrastructure/repositories/UserRepository'
-import { AuditLogRepository } from '../../infrastructure/repositories/AuditLogRepostory'
-import { AuthController } from '../controllers/AuthController'
+import express from "express";
+import { AuthService } from "../../application/useCase/authCase";
+import { UserRepository } from "../../infrastructure/repositories/UserRepository";
+import { AuditLogRepository } from "../../infrastructure/repositories/AuditLogRepostory";
+import { AuthController } from "../controllers/AuthController";
 
-const router = express.Router()
+const router = express.Router();
 
-const authService = new AuthService(new UserRepository(), new AuditLogRepository())
-const authController = new AuthController(authService)
+const authService = new AuthService(
+  new UserRepository(),
+  new AuditLogRepository(),
+);
+const authController = new AuthController(authService);
 
 /**
  * @swagger
@@ -37,10 +40,7 @@ const authController = new AuthController(authService)
  *       201:
  *         description: User registered successfully
  */
-router.post(
-  "/register",
-  authController.register
-);
+router.post("/register", authController.register);
 
 /**
  * @swagger
@@ -67,9 +67,6 @@ router.post(
  *       200:
  *         description: Login successful
  */
-router.post(
-  "/login",
-  authController.login
-);
+router.post("/login", authController.login);
 
-export default router
+export default router;

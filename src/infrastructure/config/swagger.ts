@@ -6,8 +6,7 @@ const options: swaggerJsdoc.Options = {
     info: {
       title: "MentorHub API",
       version: "1.0.0",
-      description:
-        "MentorHub Backend API Documentation",
+      description: "MentorHub Backend API Documentation",
     },
 
     servers: [
@@ -33,10 +32,7 @@ const options: swaggerJsdoc.Options = {
     ],
   },
 
-  apis: [
-    "./src/presentation/routes/*.ts",
-  ],
+  apis: ["./src/presentation/routes/*.ts"],
 };
 
-export const swaggerSpec =
-  swaggerJsdoc(options);
+export const swaggerSpec = swaggerJsdoc(options);

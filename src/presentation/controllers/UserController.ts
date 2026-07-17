@@ -2,50 +2,50 @@ import { NextFunction, Request, Response } from "express";
 import { IUserUseCase } from "../../domain/interfaceUseCase/IUserUseCase";
 
 export class UserController {
-    constructor(private userService: IUserUseCase) {}
+  constructor(private userService: IUserUseCase) {}
 
-    findUserById = async (req: Request, res: Response, next: NextFunction) => {
-        try {
-            const id = req.params.id as string
-            const result = await this.userService.findUserById(id)
-            
-            return res.status(200).json(result)
-        } catch (error) {
-            next(error)
-        }
+  findUserById = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const id = req.params.id as string;
+      const result = await this.userService.findUserById(id);
+
+      return res.status(200).json(result);
+    } catch (error) {
+      next(error);
     }
+  };
 
-    getUsers = async (req: Request, res: Response, next: NextFunction) => {
-        try {
-            const result = await this.userService.getUsers()
+  getUsers = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const result = await this.userService.getUsers();
 
-            return res.status(200).json(result)
-        } catch (error) {
-            next(error)
-        }
+      return res.status(200).json(result);
+    } catch (error) {
+      next(error);
     }
+  };
 
-    updateUser = async (req: Request, res: Response, next: NextFunction) => {
-        try {
-            const id = req.params.id as string
+  updateUser = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const id = req.params.id as string;
 
-            const result = await this.userService.updateUser(id, req.body)
+      const result = await this.userService.updateUser(id, req.body);
 
-            return res.status(200).json(result)
-        } catch (error) {
-            next(error)
-        }
+      return res.status(200).json(result);
+    } catch (error) {
+      next(error);
     }
+  };
 
-    deleteUser = async (req: Request, res: Response, next: NextFunction) => {
-        try {
-            const id = req.params.id as string
+  deleteUser = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const id = req.params.id as string;
 
-            const result = await this.userService.deleteUser(id)
+      const result = await this.userService.deleteUser(id);
 
-            return res.status(200).json(result)
-        } catch (error) {
-            next(error)
-        }
+      return res.status(200).json(result);
+    } catch (error) {
+      next(error);
     }
+  };
 }

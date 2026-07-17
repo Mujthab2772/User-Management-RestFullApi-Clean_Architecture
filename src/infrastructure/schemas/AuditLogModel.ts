@@ -1,6 +1,5 @@
 import mongoose, { Schema } from "mongoose";
 
-
 const auditLogSchema = new Schema({
   action: {
     type: String,
@@ -20,7 +19,4 @@ const auditLogSchema = new Schema({
   },
 });
 
-export const AuditLog = mongoose.model(
-  "AuditLog",
-  auditLogSchema
-);
+export const AuditLog = mongoose.model("AuditLog", auditLogSchema);
